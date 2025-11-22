@@ -1,2 +1,0 @@
-digitDatasetPath = fullfile(matlabroot, 'toolbox', 'nnet', 'nndemos', 'nndatasets', 'DigitDataset');
-exist(digitDatasetPath, 'dir')
