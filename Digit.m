@@ -1,11 +1,11 @@
-%% El yazısı rakam okuma - basit CNN (dosyasız versiyon)
 
-%% 1) Veriyi hazır fonksiyondan al
-% XTrain: 28x28x1xN, YTrain: kategorik etiketler (0–9)
+
+
+
 [XTrain, YTrain] = digitTrain4DArrayData;
 [XTest, YTest]   = digitTest4DArrayData;
 
-%% 2) Basit CNN mimarisi
+
 layers = [
     imageInputLayer([28 28 1], "Name", "input")
 
@@ -26,7 +26,7 @@ layers = [
     classificationLayer("Name", "output")
 ];
 
-%% 3) Eğitim ayarları
+
 options = trainingOptions("sgdm", ...
     "MaxEpochs", 3, ...               % İlk deneme için 3 epoch yeterli
     "MiniBatchSize", 128, ...
@@ -35,16 +35,16 @@ options = trainingOptions("sgdm", ...
     "Plots", "training-progress", ...
     "Verbose", false);
 
-%% 4) Ağı eğit
+
 net = trainNetwork(XTrain, YTrain, layers, options);
 
-%% 5) Test verisi üzerinde doğruluk
+
 YPred = classify(net, XTest);
 acc = mean(YPred == YTest);
 fprintf("Test doğruluğu: %.2f %%\n", acc * 100);
 
-%% 6) Rastgele bir test resmi göster ve tahmin et
-idx = randi(size(XTest, 4));       % Rastgele indeks
+
+idx = randi(size(XTest, 4));       
 img = XTest(:, :, 1, idx);
 trueLabel = YTest(idx);
 predLabel = YPred(idx);
